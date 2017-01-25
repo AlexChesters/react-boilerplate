@@ -11,7 +11,7 @@
     "build:prod": "webpack --config webpack.prod.config.js",
     "start": "webpack-dev-server --config webpack.dev.config.js --port 8081",
     "lint": "standard --fix && sass-lint 'src/**/*.scss' -v -q",
-    "unit": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/spec/**/*@(.js|.jsx)\"",
+    "unit": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test": "npm run unit && npm run lint"
   },
   "repository": {
