@@ -65,7 +65,6 @@ module.exports = {
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
       template: 'src/html/index.hbs',
-      favicon: 'src/favicon.png',
       dev: true
     }),
     new webpack.HotModuleReplacementPlugin()

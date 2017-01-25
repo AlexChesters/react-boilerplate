@@ -55,7 +55,6 @@ module.exports = {
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
       template: 'src/html/index.hbs',
-      favicon: 'src/favicon.png',
       minify: {
         collapseWhitespace: true
       }
