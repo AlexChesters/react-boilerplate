@@ -5,9 +5,10 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import reducer from './reducers/reducer.js'
 import * as reduxLogger from 'redux-logger'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import App from './App'
+import Example from './components/Example'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -28,7 +29,9 @@ store.dispatch({
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App} />
+      <Route path='/' component={App}>
+        <IndexRoute component={Example} />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('app')
