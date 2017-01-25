@@ -4,5 +4,5 @@ set -e
 rm -rf .git/
 git init
 git add .
-git commit
+git commit -m "Initial commit"
 rm -- $0
