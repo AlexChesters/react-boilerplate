@@ -24,7 +24,7 @@ const store = createStore(reducer, applyMiddleware(...middlewares))
 store.dispatch({
   type: 'SET_STATE',
   state: {
-    randomString: null
+    randomString: Math.random().toString(36).substring(7)
   }
 })
 
