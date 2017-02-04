@@ -1,8 +1,27 @@
 #!/bin/bash
 set -e
 
-rm -rf .git/
-git init
-git add .
-git commit -m "Initial commit"
-rm -- $0
+if [ ! $1 ]; then
+  echo "[ERROR] No name provided"
+  echo "Usage: ./scripts/clean my-new-app"
+  exit 1
+else
+  echo "NAME: $1"
+fi
+
+node -e "
+const fs = require('fs')
+const pkg = require('./package')
+pkg.name = '$1'
+delete pkg.repository
+delete pkg.author
+delete pkg.bugs
+delete pkg.homepage
+fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2))
+"
+
+#rm -rf .git/
+#git init
+#git add .
+#git commit -m "Initial commit"
+#rm -- $0

@@ -13,6 +13,6 @@ and component tests (using [Enzyme](http://airbnb.io/enzyme/)).
 
 1. `git clone git@github.com:AlexChesters/react-redux-bootstrap-boilerplate.git my-new-app`
 1. `cd my-new-app`
-1. `./scripts/clean`
+1. `./scripts/clean my-new-app`
 
-After this you will be ready to go! Don't forget to update your `package.json` to remove references to this repo.
+After this you will be ready to go!
