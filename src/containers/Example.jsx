@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Example from '../components/Example'
 
-export default class ExampleContainer extends Component {
+export class ExampleContainer extends Component {
   render () {
-    return <Example />
+    return <Example text={this.props.randomString} />
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    randomString: state.get('randomString')
+  }
+}
+export default connect(mapStateToProps)(ExampleContainer)
