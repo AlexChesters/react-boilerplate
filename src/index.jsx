@@ -8,7 +8,7 @@ import * as reduxLogger from 'redux-logger'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import App from './App'
-import Example from './components/Example'
+import Example from './containers/Example'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
