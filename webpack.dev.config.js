@@ -61,7 +61,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   plugins: [
-    new webpack.DefinePlugin(config),
+    new webpack.DefinePlugin({'process.env': config}),
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
       template: 'src/html/index.hbs',
