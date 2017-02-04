@@ -23,7 +23,9 @@ if (process.env.NODE_ENV === 'development') {
 const store = createStore(reducer, applyMiddleware(...middlewares))
 store.dispatch({
   type: 'SET_STATE',
-  state: {}
+  state: {
+    statefulProperty: Math.random().toString(36).substring(7)
+  }
 })
 
 ReactDOM.render(
