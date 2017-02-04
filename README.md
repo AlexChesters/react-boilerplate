@@ -8,3 +8,11 @@ The boilerplate also includes support for unit tests
 (using [Mocha](https://mochajs.org) and [Chai](http://chaijs.com/))
 and component tests (using [Enzyme](http://airbnb.io/enzyme/)).
 [Webpack](https://webpack.github.io/) is used for bundling.
+
+# Usage instructions
+
+1. `git clone git@github.com:AlexChesters/react-redux-bootstrap-boilerplate.git my-new-app`
+1. `cd my-new-app`
+1. `./scripts/clean`
+
+After this you will be ready to go! Don't forget to update your `package.json` to remove references to this repo.
