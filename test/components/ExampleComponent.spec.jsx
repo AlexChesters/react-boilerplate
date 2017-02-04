@@ -12,4 +12,9 @@ describe('Example component', () => {
     expect(wrapper.find('h1')).to.have.length(1)
     expect(wrapper.text()).to.equal('foobar')
   })
+  it('renders default text if no text is given', () => {
+    const wrapper = shallow(<ExampleComponent />)
+    expect(wrapper.find('h1')).to.have.length(1)
+    expect(wrapper.text()).to.equal('Hello, world!')
+  })
 })
