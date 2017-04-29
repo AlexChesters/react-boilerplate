@@ -4,8 +4,8 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import reducer from './reducers/reducer.js'
-import * as reduxLogger from 'redux-logger'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { createLogger } from 'redux-logger'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import App from './App'
 import Example from './containers/Example'
@@ -17,7 +17,7 @@ import './styles/main.scss'
 const middlewares = [thunk]
 
 if (process.env.NODE_ENV === 'development') {
-  middlewares.push(reduxLogger.default())
+  middlewares.push(createLogger())
 }
 
 const store = createStore(reducer, applyMiddleware(...middlewares))
@@ -30,10 +30,8 @@ store.dispatch({
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path='/' component={App}>
-        <IndexRoute component={Example} />
-      </Route>
+    <Router>
+      <Route path='/' component={Example}/>
     </Router>
   </Provider>,
   document.getElementById('app')

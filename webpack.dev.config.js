@@ -28,7 +28,7 @@ module.exports = {
     loaders: [
       {
         test: /\.hbs$/,
-        loader: 'handlebars'
+        loader: 'handlebars-loader'
       },
       {
         test: /\.jsx?$/,
@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.css$/,
@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -58,7 +58,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new webpack.DefinePlugin({'process.env': config}),
