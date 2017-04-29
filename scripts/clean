@@ -21,7 +21,7 @@ fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2))
 "
 
 rm -rf .git/
+rm -- $0
 git init
 git add .
 git commit -m "Initial commit"
-rm -- $0
