@@ -6,19 +6,22 @@ if [ ! $1 ]; then
   echo "Usage: ./scripts/clean my-new-app"
   exit 1
 else
-  echo "NAME: $1"
+  export NAME=$1
+  echo "NAME: $NAME"
 fi
 
 node -e "
 const fs = require('fs')
 const pkg = require('./package')
-pkg.name = '$1'
+pkg.name = '$NAME'
 delete pkg.repository
 delete pkg.author
 delete pkg.bugs
 delete pkg.homepage
 fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2))
 "
+
+echo $NAME > README.md
 
 rm -rf .git/
 rm -- $0
