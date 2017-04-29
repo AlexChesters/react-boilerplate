@@ -21,7 +21,7 @@ delete pkg.homepage
 fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2))
 "
 
-echo $NAME > README.md
+echo "# $NAME" > README.md
 
 rm -rf .git/
 rm -- $0
