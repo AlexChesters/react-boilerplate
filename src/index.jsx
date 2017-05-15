@@ -7,7 +7,6 @@ import reducer from './reducers/reducer.js'
 import { createLogger } from 'redux-logger'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import App from './App'
 import Example from './containers/Example'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -31,7 +30,7 @@ store.dispatch({
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path='/' component={Example}/>
+      <Route path='/' component={Example} />
     </Router>
   </Provider>,
   document.getElementById('app')
