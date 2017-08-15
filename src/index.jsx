@@ -7,6 +7,8 @@ import reducer from './reducers/reducer.js'
 import { createLogger } from 'redux-logger'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import App from './App'
+
 import Example from './containers/Example'
 
 const middlewares = [thunk]
@@ -26,9 +28,9 @@ store.dispatch({
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <div>
+      <App>
         <Route exact path='/' component={Example} />
-      </div>
+      </App>
     </Router>
   </Provider>,
   document.getElementById('app')
