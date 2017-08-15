@@ -9,8 +9,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Example from './containers/Example'
 
-import 'bootstrap/dist/css/bootstrap.css'
-
 import './styles/main.scss'
 
 const middlewares = [thunk]

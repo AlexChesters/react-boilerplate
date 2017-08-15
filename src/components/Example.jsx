@@ -6,7 +6,7 @@ export default class Example extends Component {
   }
   render () {
     return (
-      <h1 className='text-center'>{this.props.text}</h1>
+      <h1>{this.props.text}</h1>
     )
   }
 }

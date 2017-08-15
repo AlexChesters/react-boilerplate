@@ -55,7 +55,6 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "ramda": "^0.24.1",
