@@ -40,14 +40,6 @@ module.exports = {
         loader: 'json-loader'
       },
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },
-      {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
-      },
-      {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader?limit=10000&minetype=application/font-woff'
       },

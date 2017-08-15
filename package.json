@@ -10,7 +10,7 @@
     "build:dev": "webpack --config webpack.dev.config.js",
     "build:prod": "webpack --config webpack.prod.config.js",
     "start": "webpack-dev-server --config webpack.dev.config.js --port 8081",
-    "lint": "standard --fix && sass-lint 'src/**/*.scss' -v -q",
+    "lint": "standard --fix",
     "unit": "mocha --compilers js:babel-core/register --require ./test/test-helper.js \"test/**/*@(.js|.jsx)\"",
     "test": "npm run unit && npm run lint"
   },
@@ -33,7 +33,6 @@
     "chai": "^4.1.0",
     "chai-immutable": "^1.6.0",
     "clean-webpack-plugin": "^0.1.13",
-    "css-loader": "^0.28.0",
     "enzyme": "^2.6.0",
     "file-loader": "^0.11.1",
     "handlebars": "^4.0.5",
@@ -46,10 +45,7 @@
     "react-addons-test-utils": "^15.4.0",
     "react-hot-loader": "^3.0.0-beta.5",
     "react-test-renderer": "^15.6.1",
-    "sass-lint": "^1.9.1",
-    "sass-loader": "^6.0.3",
     "standard": "^10.0.2",
-    "style-loader": "^0.18.2",
     "url-loader": "^0.5.7",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.4.5"
