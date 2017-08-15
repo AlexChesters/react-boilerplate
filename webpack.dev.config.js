@@ -3,8 +3,6 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-const config = require('./config/development')
-
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8081',
@@ -53,7 +51,6 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-    new webpack.DefinePlugin({'process.env': config}),
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
       template: 'src/html/index.hbs',
