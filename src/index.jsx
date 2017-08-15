@@ -27,7 +27,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route path='/' component={Example} />
+        <Route exact path='/' component={Example} />
       </div>
     </Router>
   </Provider>,
