@@ -1,28 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import reducer from './reducers/reducer.js'
-import { createLogger } from 'redux-logger'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import reducer from './reducers'
 
 import App from './App'
 
 import Example from './containers/Example'
 
 const middlewares = [thunk]
-
-if (process.env.NODE_ENV === 'development') {
-  middlewares.push(createLogger())
-}
-
-const store = createStore(reducer, applyMiddleware(...middlewares))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(...middlewares))
+)
 store.dispatch({
-  type: 'SET_STATE',
-  state: {
-    randomString: Math.random().toString(36).substring(7)
-  }
+  type: 'SET_RANDOM_STRING',
+  string: Math.random().toString(36).substring(7)
 })
 
 ReactDOM.render(

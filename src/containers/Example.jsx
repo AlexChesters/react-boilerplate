@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import * as actionCreators from '../actions/action-creators.js'
 
@@ -12,9 +13,14 @@ export class ExampleContainer extends Component {
   }
 }
 
+ExampleContainer.propTypes = {
+  getRandomString: PropTypes.func.isRequired,
+  randomString: PropTypes.string
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    randomString: state.get('randomString')
+    randomString: state.randomString.string
   }
 }
 export default connect(mapStateToProps, actionCreators)(ExampleContainer)

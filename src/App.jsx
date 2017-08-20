@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import styles from './styles'
 
-export default class Background extends Component {
+export default class App extends Component {
   static get defaultProps () {
     return { style: { height: 'inherit', backgroundColor: styles.main } }
   }
@@ -13,4 +14,12 @@ export default class Background extends Component {
       </section>
     )
   }
+}
+
+App.propTypes = {
+  style: PropTypes.shape({
+    height: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired
+  }),
+  children: PropTypes.object.isRequired
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class Example extends Component {
   static get defaultProps () {
@@ -17,4 +18,12 @@ export default class Example extends Component {
       </section>
     )
   }
+}
+
+Example.propTypes = {
+  style: PropTypes.shape({
+    display: PropTypes.string.isRequired,
+    justifyContent: PropTypes.string.isRequired
+  }),
+  text: PropTypes.string.isRequired
 }
