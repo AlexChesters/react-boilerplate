@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import randomString from './random-string'
+import * as homeReducers from './routes/home/reducers'
 
 export default combineReducers({
-  randomString
+  ...homeReducers
 })

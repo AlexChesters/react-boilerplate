@@ -4,7 +4,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import ExampleComponent from '../../src/components/Example'
+import ExampleComponent from '../../../../src/routes/home/components/Example'
 
 describe('Example component', function () {
   it('renders text', function () {

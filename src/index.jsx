@@ -9,7 +9,7 @@ import reducer from './reducers'
 
 import App from './App'
 
-import Example from './containers/Example'
+import Home from './routes/home'
 
 const middlewares = [thunk]
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -26,7 +26,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <App>
-        <Route exact path='/' component={Example} />
+        <Route exact path='/' component={Home} />
       </App>
     </Router>
   </Provider>,

@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import * as actionCreators from '../actions/action-creators.js'
+import { getRandomString } from './actions'
 
-import Example from '../components/Example'
+import Example from './components/Example'
 
-export class ExampleContainer extends Component {
+export class HomeContainer extends Component {
   render () {
     this.props.getRandomString()
     return <Example text={'Random string from redux: ' + this.props.randomString} />
   }
 }
 
-ExampleContainer.propTypes = {
+HomeContainer.propTypes = {
   getRandomString: PropTypes.func.isRequired,
   randomString: PropTypes.string
 }
@@ -23,4 +23,4 @@ const mapStateToProps = (state, ownProps) => {
     randomString: state.randomString.string
   }
 }
-export default connect(mapStateToProps, actionCreators)(ExampleContainer)
+export default connect(mapStateToProps, { getRandomString })(HomeContainer)
