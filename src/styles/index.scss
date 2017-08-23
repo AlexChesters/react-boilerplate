@@ -1,0 +1,10 @@
+@import 'colors';
+
+body {
+  background-color: map-get($colors, 'main');
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}

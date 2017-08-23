@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import './Example.scss'
+
 export default class Example extends Component {
   static get defaultProps () {
     return {
-      text: 'Hello, world!',
-      style: {
-        display: 'flex',
-        justifyContent: 'center'
-      }
+      text: 'Hello, world!'
     }
   }
   render () {
     return (
-      <section style={this.props.style}>
+      <section className='example'>
         <h1>{this.props.text}</h1>
       </section>
     )
@@ -21,9 +19,5 @@ export default class Example extends Component {
 }
 
 Example.propTypes = {
-  style: PropTypes.shape({
-    display: PropTypes.string.isRequired,
-    justifyContent: PropTypes.string.isRequired
-  }),
   text: PropTypes.string
 }

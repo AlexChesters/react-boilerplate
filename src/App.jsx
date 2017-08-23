@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './styles'
+import './styles/index.scss'
 
 export default class App extends Component {
-  static get defaultProps () {
-    return { style: { height: 'inherit', backgroundColor: styles.main } }
-  }
   render () {
     return (
-      <section style={this.props.style}>
+      <section>
         {this.props.children}
       </section>
     )
@@ -17,9 +14,5 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  style: PropTypes.shape({
-    height: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string.isRequired
-  }),
   children: PropTypes.object.isRequired
 }
