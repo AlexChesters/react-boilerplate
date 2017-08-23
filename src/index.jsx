@@ -13,8 +13,12 @@ import Home from './routes/home'
 
 const middlewares = [thunk]
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const initialState = {
+  randomString: { string: 'abc1234' }
+}
 const store = createStore(
   reducer,
+  initialState,
   composeEnhancers(applyMiddleware(...middlewares))
 )
 

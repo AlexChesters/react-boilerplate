@@ -13,17 +13,15 @@ export class HomeContainer extends Component {
   }
 
   render () {
-    const { randomString } = this.props
-    const text = randomString
-      ? `Random string from redux: ${randomString}`
-      : undefined
-    return <Example text={text} />
+    return (
+      <Example text={`Random string from redux: ${this.props.randomString}`} />
+    )
   }
 }
 
 HomeContainer.propTypes = {
   getRandomString: PropTypes.func.isRequired,
-  randomString: PropTypes.string
+  randomString: PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
