@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Example renders correctly 1`] = `
+<section
+  className="example"
+>
+  <h1>
+    2017-04
+  </h1>
+</section>
+`;

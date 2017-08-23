@@ -1,20 +1,15 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 
 import React from 'react'
-import { shallow } from 'enzyme'
-import { expect } from 'chai'
+import renderer from 'react-test-renderer'
 
-import ExampleComponent from '../../../../src/routes/home/components/Example'
+import Example from '../../../../src/routes/home/components/Example'
 
-describe('Example component', function () {
-  it('renders text', function () {
-    const wrapper = shallow(<ExampleComponent text='foobar' />)
-    expect(wrapper.find('h1')).to.have.length(1)
-    expect(wrapper.text()).to.equal('foobar')
-  })
-  it('renders default text if no text is given', function () {
-    const wrapper = shallow(<ExampleComponent />)
-    expect(wrapper.find('h1')).to.have.length(1)
-    expect(wrapper.text()).to.equal('Hello, world!')
+describe('Example', () => {
+  it('renders correctly', () => {
+    const tree = renderer.create(
+      <Example path={'/2017-04'} text='2017-04' />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
