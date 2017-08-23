@@ -16,6 +16,8 @@
     "unit": "jest --config .jestrc.json",
     "test": "concurrently \"npm run unit\" \"npm run lint\""
   },
+  "pre-commit": ["lint"],
+  "pre-push": ["unit"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AlexChesters/react-redux-bootstrap-boilerplate.git"
