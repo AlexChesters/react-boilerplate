@@ -17,10 +17,6 @@ const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(...middlewares))
 )
-store.dispatch({
-  type: 'SET_RANDOM_STRING',
-  string: Math.random().toString(36).substring(7)
-})
 
 ReactDOM.render(
   <Provider store={store}>

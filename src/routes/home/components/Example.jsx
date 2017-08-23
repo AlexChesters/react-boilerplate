@@ -25,5 +25,5 @@ Example.propTypes = {
     display: PropTypes.string.isRequired,
     justifyContent: PropTypes.string.isRequired
   }),
-  text: PropTypes.string.isRequired
+  text: PropTypes.string
 }

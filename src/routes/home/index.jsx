@@ -7,9 +7,17 @@ import { getRandomString } from './actions'
 import Example from './components/Example'
 
 export class HomeContainer extends Component {
+  constructor (props) {
+    super(props)
+    props.getRandomString()
+  }
+
   render () {
-    this.props.getRandomString()
-    return <Example text={'Random string from redux: ' + this.props.randomString} />
+    const { randomString } = this.props
+    const text = randomString
+      ? `Random string from redux: ${randomString}`
+      : undefined
+    return <Example text={text} />
   }
 }
 
