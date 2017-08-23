@@ -1,6 +1,8 @@
+import { SET_RANDOM_STRING } from '../action-types'
+
 export const setRandomString = string => {
   return {
-    type: 'SET_RANDOM_STRING',
+    type: SET_RANDOM_STRING,
     string
   }
 }
