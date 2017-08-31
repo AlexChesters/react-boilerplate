@@ -4,8 +4,8 @@ A reasonably bare boilerplate that gets you set up with
 [React](https://facebook.github.io/react/) and
 [Redux](http://redux.js.org/).
 The boilerplate also includes support for unit tests
-(using [Mocha](https://mochajs.org) and [Chai](http://chaijs.com/))
-and component tests (using [Enzyme](http://airbnb.io/enzyme/)).
+(using [Jest](https://facebook.github.io/jest/) and [Chai](http://chaijs.com/))
+and snapshot tests (using [Jest](https://facebook.github.io/jest/docs/en/snapshot-testing.html)).
 [Webpack](https://webpack.github.io/) is used for bundling.
 
 # Usage instructions
