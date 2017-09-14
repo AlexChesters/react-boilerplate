@@ -5,7 +5,7 @@ exports[`Example renders correctly 1`] = `
   className="example"
 >
   <h1>
-    2017-04
+    Hello, world!
   </h1>
 </section>
 `;
