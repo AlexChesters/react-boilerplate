@@ -1,15 +1,16 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import App from './App'
+import './styles/index.scss'
+
 import Home from './routes/home'
 
 export default function router () {
   return (
     <Router>
-      <App>
+      <Switch>
         <Route exact path='/' component={Home} />
-      </App>
+      </Switch>
     </Router>
   )
 }
