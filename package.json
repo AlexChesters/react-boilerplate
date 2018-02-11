@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "engines": {
-    "node": "8.7.0",
-    "npm": "5.4.2"
+    "node": "8.9.1",
+    "npm": "5.5.1"
   },
   "scripts": {
     "build:dev": "webpack --config webpack.dev.config.js",
@@ -80,7 +80,6 @@
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^16.0.0",
-    "react-google-maps": "^9.0.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
