@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
+  mode: 'production',
   entry: [
     './src/index.jsx'
   ],
@@ -13,15 +14,15 @@ module.exports = {
     filename: 'bundle.[hash].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.hbs$/,
-        loader: 'handlebars-loader'
+        use: 'handlebars-loader'
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
       },
       {
         test: /\.scss$/,
@@ -33,15 +34,15 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        use: 'json-loader'
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        use: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader'
+        use: 'file-loader'
       }
     ]
   },
@@ -57,11 +58,6 @@ module.exports = {
       template: 'src/html/index.hbs',
       minify: {
         collapseWhitespace: true
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
       }
     })
   ]

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
+  mode: 'development',
   entry: [
     'webpack-dev-server/client?http://localhost:8081',
     'webpack/hot/only-dev-server',
@@ -23,15 +24,15 @@ module.exports = {
     poll: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.hbs$/,
-        loader: 'handlebars-loader'
+        use: 'handlebars-loader'
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
       },
       {
         test: /\.scss$/,
@@ -43,15 +44,15 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        use: 'json-loader'
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        use: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader'
+        use: 'file-loader'
       }
     ]
   },
