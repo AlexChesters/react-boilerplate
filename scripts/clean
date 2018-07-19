@@ -1,13 +1,12 @@
 #!/bin/bash
 set -e
 
-if [ ! $1 ]; then
+export NAME=$1
+
+if [ ! $NAME ]; then
   echo "[ERROR] No name provided"
   echo "Usage: ./scripts/clean my-new-app"
   exit 1
-else
-  export NAME=$1
-  echo "NAME: $NAME"
 fi
 
 node -e "
