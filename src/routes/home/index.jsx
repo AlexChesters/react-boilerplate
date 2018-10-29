@@ -1,32 +1,23 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-
-import { getRandomString } from './actions'
+import fetch from 'isomorphic-fetch'
 
 import Example from './components/Example'
 
-export class HomeContainer extends Component {
+export default class HomeContainer extends Component {
   constructor (props) {
     super(props)
-    props.getRandomString()
+    this.state = { title: null }
+  }
+
+  async componentDidMount () {
+    const res = await fetch('https://j8gfdwfat2.execute-api.eu-west-1.amazonaws.com/prod/whatson')
+    const data = await res.json()
+    this.setState({ title: data[0].title })
   }
 
   render () {
     return (
-      <Example text={`Random string from redux: ${this.props.randomString}`} />
+      <Example text={`Random string from redux: ${this.state.title}`} />
     )
   }
 }
-
-HomeContainer.propTypes = {
-  getRandomString: PropTypes.func.isRequired,
-  randomString: PropTypes.string.isRequired
-}
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    randomString: state.randomString.string
-  }
-}
-export default connect(mapStateToProps, { getRandomString })(HomeContainer)
