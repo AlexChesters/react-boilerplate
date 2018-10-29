@@ -4,20 +4,17 @@ import PropTypes from 'prop-types'
 import './Example.scss'
 
 export default class Example extends Component {
-  static get defaultProps () {
-    return {
-      text: 'Hello, world!'
-    }
-  }
   render () {
     return (
       <section className='example'>
-        <h1>{this.props.text}</h1>
+        <h1>{this.props.title}</h1>
+        <h4>{this.props.subtitle}</h4>
       </section>
     )
   }
 }
 
 Example.propTypes = {
-  text: PropTypes.string
+  title: PropTypes.string,
+  subtitle: PropTypes.string
 }

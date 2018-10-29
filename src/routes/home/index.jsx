@@ -6,18 +6,25 @@ import Example from './components/Example'
 export default class HomeContainer extends Component {
   constructor (props) {
     super(props)
-    this.state = { title: null }
+    this.state = { title: null, subtitle: null }
   }
 
   async componentDidMount () {
-    const res = await fetch('https://j8gfdwfat2.execute-api.eu-west-1.amazonaws.com/prod/whatson')
+    const res = await fetch('https://www.reddit.com/r/all.json')
     const data = await res.json()
-    this.setState({ title: data[0].title })
+    const firstItem = data.data.children[0].data
+    this.setState({
+      title: firstItem.title,
+      subtitle: firstItem.subreddit_name_prefixed
+    })
   }
 
   render () {
     return (
-      <Example text={`Random string from redux: ${this.state.title}`} />
+      <Example
+        title={this.state.title}
+        subtitle={this.state.subtitle}
+      />
     )
   }
 }
