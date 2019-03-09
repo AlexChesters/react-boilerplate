@@ -60,7 +60,7 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/html/index.hbs',
       dev: true

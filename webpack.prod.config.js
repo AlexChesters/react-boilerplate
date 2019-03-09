@@ -53,7 +53,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/html/index.hbs',
       minify: {
