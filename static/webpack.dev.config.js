@@ -26,10 +26,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.hbs$/,
-        use: 'handlebars-loader'
-      },
-      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader'
@@ -62,8 +58,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/html/index.hbs',
-      dev: true
+      template: 'src/html/index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
