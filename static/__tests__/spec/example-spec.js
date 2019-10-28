@@ -1,9 +1,7 @@
-/* eslint-env mocha */
-
-import { expect } from 'chai'
+/* eslint-env jest */
 
 describe('Unit test', () => {
   it('should pass', () => {
-    expect(true).to.equal(true)
+    expect(true).toEqual(true)
   })
 })
