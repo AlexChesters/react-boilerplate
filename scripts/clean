@@ -38,6 +38,13 @@ const codepipeline = fs.readFileSync('./ci/codepipeline.yml', 'utf-8')
 fs.writeFileSync('./ci/codepipeline.yml', codepipeline.replace(/__name__/g, '$NAME'))
 "
 
+node -e "
+const fs = require('fs')
+
+const pipeline = fs.readFileSync('./scripts/pipeline.sh', 'utf-8')
+fs.writeFileSync('./scripts/pipeline.sh', pipeline.replace(/__name__/g, '$NAME'))
+"
+
 echo "# $NAME" > README.md
 
 rm -rf .git/
