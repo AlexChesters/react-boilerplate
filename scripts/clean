@@ -20,6 +20,26 @@ delete pkg.homepage
 fs.writeFileSync('./static/package.json', JSON.stringify(pkg, null, 2))
 "
 
+node -e "
+const fs = require('fs')
+
+const infra = fs.readFileSync('./stacks/infrastructure.yml', 'utf-8')
+fs.writeFileSync('./stacks/infrastructure.yml', infra.replace(/__name__/g, '$NAME'))
+
+const testParams = require('./stacks/parameters/infrastructure/test.json')
+testParams.Tags.Project = \"$NAME\"
+fs.writeFileSync('./stacks/parameters/infrastructure/test.json', JSON.stringify(testParams, null, 2))
+
+const liveParams = require('./stacks/parameters/infrastructure/live.json')
+liveParams.Tags.Project = \"$NAME\"
+fs.writeFileSync('./stacks/parameters/infrastructure/live.json', JSON.stringify(liveParams, null, 2))
+
+const codepipeline = fs.readFileSync('./ci/codepipeline.yml', 'utf-8')
+fs.writeFileSync('./ci/codepipeline.yml', codepipeline.replace(/__name__/g, '$NAME'))
+"
+
+exit 0
+
 echo "# $NAME" > README.md
 
 rm -rf .git/

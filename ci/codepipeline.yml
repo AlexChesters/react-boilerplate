@@ -1,0 +1,245 @@
+Description: Pipeline for __name__
+Parameters:
+  BasePolicyArn:
+    Type: String
+    Description: IAM Policy ARN of the base CodeBuild policy
+    Default: arn:aws:iam::008356366354:policy/core-infrastructure-global-CodeBuildBaseManagedPolicy-FWV7ZO5N6AGF
+  CodePipelineCloudFormationRoleArn:
+    Type: String
+    Description: IAM Role ARN to be assumed by CodePipeline to perform CloudFormation actions
+    Default: arn:aws:iam::008356366354:role/core-infrastructure-globa-CodePipelineCloudFormati-1NF00Q6M6OVE1
+  BuildArtifactsBucketName:
+    Type: String
+    Description: S3 Bucket name where build artifacts are stored
+    Default: core-infrastructure-eu-w-buildartifactsbucketeuwe-12d2acmozch84
+  CodePipelineExecutionRoleArn:
+    Type: String
+    Description: IAM Role ARN to be assumed by CodePipeline when executing
+    Default: arn:aws:iam::008356366354:role/core-infrastructure-globa-CodePipelineBaseRoleB458-161XPXE39XXUL
+  TestBucketName:
+    Description: Name of the S3 bucket for the test environment
+    Type: String
+    Default: TODO
+  LiveBucketName:
+    Description: Name of the S3 bucket for the live environment
+    Type: String
+    Default: TODO
+Resources:
+  TestCodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: codebuild.amazonaws.com
+      ManagedPolicyArns:
+        - !Ref BasePolicyArn
+      Policies:
+        - PolicyName: test-__name__-codebuild-s3-policy
+          PolicyDocument:
+            Statement:
+              - Action:
+                  - s3:PutObject
+                  - s3:PutObjectAcl
+                  - s3:DeleteObject
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${TestBucketName}/*"
+              - Action:
+                  - s3:ListBucket
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${TestBucketName}"
+
+  TestCodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: CODEPIPELINE
+        Location: !Ref BuildArtifactsBucketName
+        Path: /artifacts/__name__-test/
+        Packaging: NONE
+        Name: build
+        NamespaceType: BUILD_ID
+      TimeoutInMinutes: 5
+      Description: Builds and deploys __name__ to test
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:3.0
+        Type: LINUX_CONTAINER
+        EnvironmentVariables:
+          - Name: BUCKET
+            Value: !Ref TestBucketName
+            Type: PLAINTEXT
+          - Name: ENVIRONMENT
+            Value: test
+            Type: PLAINTEXT
+          - Name: CACHE_MAX_AGE
+            Value: "600"
+            Type: PLAINTEXT
+      Name: __name__-build-and-deploy-test
+      ServiceRole: !GetAtt TestCodeBuildRole.Arn
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: buildspec.yml
+
+  LiveCodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: codebuild.amazonaws.com
+      ManagedPolicyArns:
+        - !Ref BasePolicyArn
+      Policies:
+        - PolicyName: live-__name__-codebuild-policy
+          PolicyDocument:
+            Statement:
+              - Action:
+                  - s3:PutObject
+                  - s3:PutObjectAcl
+                  - s3:DeleteObject
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${LiveBucketName}/*"
+              - Action:
+                  - s3:ListBucket
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${LiveBucketName}"
+
+  LiveCodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: CODEPIPELINE
+        Location: !Ref BuildArtifactsBucketName
+        Path: /artifacts/__name__-live/
+        Packaging: NONE
+        Name: build
+        NamespaceType: BUILD_ID
+      TimeoutInMinutes: 5
+      Description: Builds and deploys __name__ to live
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:3.0
+        Type: LINUX_CONTAINER
+        EnvironmentVariables:
+          - Name: BUCKET
+            Value: !Ref LiveBucketName
+            Type: PLAINTEXT
+          - Name: ENVIRONMENT
+            Value: live
+            Type: PLAINTEXT
+          - Name: CACHE_MAX_AGE
+            Value: "3600"
+            Type: PLAINTEXT
+      Name: __name__-build-and-deploy-live
+      ServiceRole: !GetAtt LiveCodeBuildRole.Arn
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: buildspec.yml
+
+  CodePipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      ArtifactStore:
+        Type: S3
+        Location: !Ref BuildArtifactsBucketName
+      Name: __name__
+      RestartExecutionOnUpdate: true
+      RoleArn: !Ref CodePipelineExecutionRoleArn
+      Stages:
+        - Name: Source
+          Actions:
+            - ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: "1"
+                Provider: GitHub
+              OutputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 1
+              Name: Clone-From-GitHub
+              Configuration:
+                Owner: AlexChesters
+                Repo: __name__
+                Branch: master
+                OAuthToken: "{{resolve:ssm:/Secrets/GitHub-Token:1}}"
+                PollForSourceChanges: false
+        - Name: Deploy-To-Test
+          Actions:
+            - ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: "1"
+                Provider: CloudFormation
+              InputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 1
+              Name: Update-Stack
+              Configuration:
+                ActionMode: REPLACE_ON_FAILURE
+                Capabilities: CAPABILITY_NAMED_IAM
+                StackName: __name__-test
+                RoleArn: !Ref CodePipelineCloudFormationRoleArn
+                TemplatePath: GitHubSource::stacks/infrastructure.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/test.json
+            - ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: "1"
+                Provider: CodeBuild
+              InputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 3
+              Name: Build-And-Deploy-__name__-Content
+              Configuration:
+                ProjectName: !Ref "TestCodeBuildProject"
+        - Name: Deploy-To-Live
+          Actions:
+            - ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: "1"
+                Provider: CloudFormation
+              InputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 1
+              Name: Update-Stack
+              Configuration:
+                ActionMode: REPLACE_ON_FAILURE
+                Capabilities: CAPABILITY_NAMED_IAM
+                StackName: __name__-live
+                RoleArn: !Ref CodePipelineCloudFormationRoleArn
+                TemplatePath: GitHubSource::stacks/infrastructure.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/live.json
+            - ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: "1"
+                Provider: CodeBuild
+              InputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 3
+              Name: Build-And-Deploy-__name__-Content
+              Configuration:
+                ProjectName: !Ref "LiveCodeBuildProject"
+
+  CodePipelineWebhook:
+    Type: AWS::CodePipeline::Webhook
+    Properties:
+      Authentication: GITHUB_HMAC
+      AuthenticationConfiguration:
+        SecretToken: "{{resolve:ssm:/Secrets/GitHub-Webhook-Secret:1}}"
+      Filters:
+        - JsonPath: "$.ref"
+      TargetPipeline: !Ref CodePipeline
+      TargetAction: Clone-From-GitHub
+      TargetPipelineVersion: !GetAtt CodePipeline.Version
+      RegisterWithThirdParty: true

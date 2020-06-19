@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - cd static
+      - npm ci
+  build:
+    commands:
+      - npm t
+      - npm run build:prod
+      - aws s3 sync build s3://$BUCKET --cache-control max-age=$CACHE_MAX_AGE --acl public-read --delete
+artifacts:
+  files:
+    - "**/*"
