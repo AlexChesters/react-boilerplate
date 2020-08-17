@@ -77,7 +77,7 @@ Resources:
             Value: test
             Type: PLAINTEXT
           - Name: CACHE_MAX_AGE
-            Value: "600"
+            Value: "60"
             Type: PLAINTEXT
       Name: __name__-build-and-deploy-test
       ServiceRole: !GetAtt TestCodeBuildRole.Arn
