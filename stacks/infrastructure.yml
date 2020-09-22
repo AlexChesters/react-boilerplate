@@ -1,4 +1,4 @@
-Description: Infrastructure definition for my-app
+Description: Infrastructure definition for __name__
 Outputs:
   BucketArn:
     Description: ARN of the S3 bucket for this environment
