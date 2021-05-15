@@ -6,9 +6,7 @@ The boilerplate includes:
 * A skeleton React app
 * Unit tests skeleton using [Jest](https://facebook.github.io/jest/)
 * [Webpack](https://webpack.github.io/) for local running and bundling
-* A [`stacks/`](./stacks) directory containing a CloudFormation stack to set up an S3 bucket and CloudFront distribution
-* A [`ci/`](./ci) directory containing a CloudFormation stack to build and deploy the app
-* A [`scripts/`](./scripts) directory containing a shell script to deploy the above stack
+* A GitHub Actions workflow defined in [`.github/`](./github)
 
 # Usage instructions
 
