@@ -169,7 +169,7 @@ Resources:
               Configuration:
                 Owner: AlexChesters
                 Repo: __name__
-                Branch: master
+                Branch: main
                 OAuthToken: "{{resolve:ssm:/Secrets/GitHub-Personal-Access-Token:1}}"
                 PollForSourceChanges: false
         - Name: Deploy-To-Test
