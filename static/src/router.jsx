@@ -7,7 +7,7 @@ import Home from './routes/home'
 
 export default function router () {
   return (
-    <Router>
+    <Router basename={'/my-app'}>
       <Switch>
         <Route exact path='/' component={Home} />
       </Switch>

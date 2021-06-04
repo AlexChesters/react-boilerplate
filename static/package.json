@@ -9,7 +9,7 @@
   "scripts": {
     "build:dev": "webpack --config webpack.dev.config.js",
     "build:prod": "webpack --config webpack.prod.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --port 8081",
+    "start": "webpack serve --config webpack.dev.config.js --port 8081",
     "lint:styles": "stylelint \"src/**/*.scss\" --syntax scss --config .stylelintrc.json",
     "lint:scripts": "eslint --config .eslintrc.json --ext js --ext jsx src __tests__",
     "lint": "concurrently \"npm run lint:styles\" \"npm run lint:scripts\"",
