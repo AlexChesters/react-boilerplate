@@ -16,8 +16,7 @@ module.exports = {
     filename: 'bundle.[contenthash].js'
   },
   devServer: {
-    contentBase: './build',
-    hot: true,
+    static: './build',
     historyApiFallback: true
   },
   watchOptions: {
