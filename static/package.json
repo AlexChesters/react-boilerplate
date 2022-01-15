@@ -10,11 +10,11 @@
     "build:dev": "webpack --config webpack.dev.config.js",
     "build:prod": "webpack --config webpack.prod.config.js",
     "start": "webpack serve --config webpack.dev.config.js --port 8081",
-    "lint:styles": "stylelint \"src/**/*.scss\" --syntax scss --config .stylelintrc.json",
+    "lint:styles": "stylelint \"src/**/*.scss\"",
     "lint:scripts": "eslint --config .eslintrc.json --ext js --ext jsx src __tests__",
-    "lint": "concurrently \"npm run lint:styles\" \"npm run lint:scripts\"",
+    "lint": "npm run lint:scripts && npm run lint:styles",
     "unit": "jest --config .jestrc.json",
-    "test": "concurrently \"npm run unit\" \"npm run lint\""
+    "test": "npm run unit && npm run lint"
   },
   "repository": {
     "type": "git",
@@ -51,16 +51,16 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.4",
     "json-loader": "^0.5.7",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.1",
     "react-hot-loader": "^4.13.0",
     "sass-loader": "^12.0.0",
     "style-loader": "^2.0.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0",
+    "stylelint": "^14.2.0",
+    "stylelint-config-standard-scss": "^3.0.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
     "isomorphic-fetch": "^3.0.0",

@@ -1,6 +1,6 @@
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 
 .example {
-  color: map-get($colors, 'text');
+  color: map.get($colors, "text");
   text-align: center;
 }

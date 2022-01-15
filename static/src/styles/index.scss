@@ -1,7 +1,7 @@
-@import 'colors';
+@import "colors";
 
 body {
-  background-color: map-get($colors, 'main');
+  background-color: map.get($colors, "main");
 }
 
 #app {
