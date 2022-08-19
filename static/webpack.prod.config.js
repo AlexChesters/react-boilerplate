@@ -14,7 +14,7 @@ module.exports = {
     filename: 'bundle.[contenthash].js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json']
   },
   module: {
     rules: [
@@ -45,9 +45,6 @@ module.exports = {
         use: 'file-loader'
       }
     ]
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
   },
   plugins: [
     new webpack.DefinePlugin({
