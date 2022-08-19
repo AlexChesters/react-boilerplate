@@ -3,8 +3,13 @@ import fetch from 'isomorphic-fetch'
 
 import Example from './components/Example'
 
+type Data = {
+  title?: string,
+  subtitle?: string
+}
+
 const Home = () => {
-  const [data, setData] = useState({})
+  const [data, setData] = useState<Data>({})
 
   async function fetchData () {
     const res = await fetch('https://www.reddit.com/r/all.json')

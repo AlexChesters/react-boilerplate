@@ -8,22 +8,28 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8081',
     'webpack/hot/only-dev-server',
-    './src/index.jsx'
+    './src/index.tsx'
   ],
   output: {
     path: path.join(__dirname, '/build/my-app'),
-    publicPath: '/',
+    publicPath: '/my-app',
     filename: 'bundle.[contenthash].js'
   },
-  devServer: {
-    static: './build',
-    historyApiFallback: true
-  },
-  watchOptions: {
-    poll: true
+  resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json']
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules|\.webpack)/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true
+          }
+        }
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -46,9 +52,6 @@ module.exports = {
         use: 'file-loader'
       }
     ]
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
   },
   plugins: [
     new CleanWebpackPlugin(),

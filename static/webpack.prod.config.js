@@ -6,12 +6,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   mode: 'production',
   entry: [
-    './src/index.jsx'
+    './src/index.tsx'
   ],
   output: {
     path: path.join(__dirname, '/build'),
     publicPath: '/my-app/',
     filename: 'bundle.[contenthash].js'
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
   },
   module: {
     rules: [
@@ -19,6 +22,11 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader'
       },
       {
         test: /\.scss$/,

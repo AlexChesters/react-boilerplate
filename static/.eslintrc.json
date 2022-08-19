@@ -6,10 +6,15 @@
   },
   "extends": [
     "standard",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/electron",
+    "plugin:import/typescript"
   ],
   "plugins": [
     "react"
   ],
-  "parser": "@babel/eslint-parser"
+  "parser": "@typescript-eslint/parser"
 }

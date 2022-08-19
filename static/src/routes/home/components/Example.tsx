@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 
 import './Example.scss'
 
-const Example = (props) => {
+type Props = {
+  title: string,
+  subtitle: string
+}
+
+const Example = (props: Props) => {
   return (
     <section className='example'>
       <h1>{props.title}</h1>
