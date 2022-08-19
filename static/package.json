@@ -11,7 +11,7 @@
     "build:prod": "webpack --config webpack.prod.config.js",
     "start": "webpack serve --config webpack.dev.config.js --port 8081",
     "lint:styles": "stylelint \"src/**/*.scss\"",
-    "lint:scripts": "eslint --config .eslintrc.json --ext tsx --ext ts src __tests__",
+    "lint:scripts": "eslint --config .eslintrc.json --ext tsx --ext ts src",
     "lint": "npm run lint:scripts && npm run lint:styles",
     "unit": "jest --config .jestrc.json",
     "test": "npm run unit && npm run lint"
