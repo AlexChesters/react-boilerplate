@@ -4,7 +4,7 @@
   "description": "",
   "engines": {
     "node": "^18",
-    "npm": "8.x.x"
+    "npm": "9.x.x"
   },
   "scripts": {
     "build:dev": "webpack --config webpack.dev.config.js",
