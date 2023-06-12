@@ -1,8 +1,8 @@
-name: Static
+name: Development
 
 on:
   push:
-    branches: [main]
+    branches: [development]
 
 defaults:
   run:

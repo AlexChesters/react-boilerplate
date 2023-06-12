@@ -6,7 +6,7 @@ The boilerplate includes:
 * A skeleton React app
 * Unit tests skeleton using [Jest](https://facebook.github.io/jest/)
 * [Webpack](https://webpack.github.io/) for local running and bundling
-* A GitHub Actions workflow defined in [`.github/`](./github)
+* GitHub Actions workflows defined in [`.github/`](./github)
 
 # Usage instructions
 
