@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import fetch from 'isomorphic-fetch'
 
 import Example from './components/Example'
 
@@ -12,7 +11,7 @@ const Home = () => {
   const [data, setData] = useState<Data>({})
 
   async function fetchData () {
-    const res = await fetch('https://www.reddit.com/r/all.json')
+    const res = await window.fetch('https://www.reddit.com/r/all.json')
     const data = await res.json()
     const firstItem = data.data.children[0].data
 
