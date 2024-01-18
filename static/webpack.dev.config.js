@@ -10,6 +10,10 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/index.tsx'
   ],
+  devServer: {
+    port: 8081,
+    historyApiFallback: true
+  },
   output: {
     path: path.join(__dirname, '/build/my-app'),
     publicPath: '/my-app',
